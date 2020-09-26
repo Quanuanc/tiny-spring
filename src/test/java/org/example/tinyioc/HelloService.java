@@ -1,7 +1,14 @@
 package org.example.tinyioc;
 
 public class HelloService {
-    public void hello(){
-        System.out.println("Hello");
+
+    private String text;
+
+    public void hello() {
+        System.out.println(text);
+    }
+
+    public void setText(String text) {
+        this.text = text;
     }
 }

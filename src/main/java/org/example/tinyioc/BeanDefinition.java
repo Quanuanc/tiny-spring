@@ -4,12 +4,21 @@ public class BeanDefinition {
     private Object bean;
     private Class beanClass;
     private String beanClassName;
+    private PropertyValues propertyValues;
 
     public BeanDefinition() {
     }
 
     public Object getBean() {
         return bean;
+    }
+
+    public PropertyValues getPropertyValues() {
+        return propertyValues;
+    }
+
+    public void setPropertyValues(PropertyValues propertyValues) {
+        this.propertyValues = propertyValues;
     }
 
     public void setBean(Object bean) {
@@ -28,7 +37,7 @@ public class BeanDefinition {
         return beanClassName;
     }
 
-    public void setBeanCLassName(String beanClassName) {
+    public void setBeanClassName(String beanClassName) {
         this.beanClassName = beanClassName;
         try {
             this.beanClass = Class.forName(beanClassName);
