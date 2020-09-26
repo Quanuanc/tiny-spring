@@ -1,24 +1,19 @@
 package org.example.tinyioc;
 
+/**
+ * bean的内容和元数据，保存在BeanFactory中，包装bean的实体
+ */
 public class BeanDefinition {
+
     private Object bean;
+
     private Class beanClass;
+
     private String beanClassName;
+
     private PropertyValues propertyValues;
 
     public BeanDefinition() {
-    }
-
-    public Object getBean() {
-        return bean;
-    }
-
-    public PropertyValues getPropertyValues() {
-        return propertyValues;
-    }
-
-    public void setPropertyValues(PropertyValues propertyValues) {
-        this.propertyValues = propertyValues;
     }
 
     public void setBean(Object bean) {
@@ -44,5 +39,17 @@ public class BeanDefinition {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+    }
+
+    public Object getBean() {
+        return bean;
+    }
+
+    public PropertyValues getPropertyValues() {
+        return propertyValues;
+    }
+
+    public void setPropertyValues(PropertyValues propertyValues) {
+        this.propertyValues = propertyValues;
     }
 }

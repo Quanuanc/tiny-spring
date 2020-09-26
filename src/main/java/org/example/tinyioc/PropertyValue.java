@@ -1,7 +1,9 @@
 package org.example.tinyioc;
 
 public class PropertyValue {
+
     private final String name;
+
     private final Object value;
 
     public PropertyValue(String name, Object value){
