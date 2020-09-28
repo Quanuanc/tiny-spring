@@ -1,4 +1,4 @@
-package org.example.tinyioc.io;
+package org.example.tinyioc.beans.io;
 
 import java.io.IOException;
 import java.io.InputStream;

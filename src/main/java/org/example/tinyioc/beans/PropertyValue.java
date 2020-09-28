@@ -1,4 +1,4 @@
-package org.example.tinyioc;
+package org.example.tinyioc.beans;
 
 public class PropertyValue {
 

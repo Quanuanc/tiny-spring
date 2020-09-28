@@ -1,11 +1,11 @@
-package org.example.tinyioc.factory;
+package org.example.tinyioc.beans.factory;
 
-import org.example.tinyioc.BeanDefinition;
-import org.example.tinyioc.PropertyValue;
+import org.example.tinyioc.beans.BeanDefinition;
+import org.example.tinyioc.beans.PropertyValue;
 
 import java.lang.reflect.Field;
 
-public class AutoCapableBeanFactory extends AbstractBeanFactory {
+public class AutowireCapableBeanFactory extends AbstractBeanFactory {
     @Override
     protected Object doCreateBean(BeanDefinition beanDefinition) throws Exception {
         Object bean = createBeanInstance(beanDefinition);

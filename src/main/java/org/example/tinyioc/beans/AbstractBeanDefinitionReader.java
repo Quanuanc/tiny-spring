@@ -1,6 +1,6 @@
-package org.example.tinyioc;
+package org.example.tinyioc.beans;
 
-import org.example.tinyioc.io.ResourceLoader;
+import org.example.tinyioc.beans.io.ResourceLoader;
 
 import java.util.HashMap;
 import java.util.Map;

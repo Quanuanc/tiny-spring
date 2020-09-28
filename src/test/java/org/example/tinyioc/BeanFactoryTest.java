@@ -1,9 +1,9 @@
 package org.example.tinyioc;
 
-import org.example.tinyioc.factory.AutoCapableBeanFactory;
-import org.example.tinyioc.factory.BeanFactory;
-import org.example.tinyioc.io.ResourceLoader;
-import org.example.tinyioc.xml.XmlBeanDefinitionReader;
+import org.example.tinyioc.beans.BeanDefinition;
+import org.example.tinyioc.beans.factory.AutowireCapableBeanFactory;
+import org.example.tinyioc.beans.io.ResourceLoader;
+import org.example.tinyioc.beans.xml.XmlBeanDefinitionReader;
 import org.junit.Test;
 
 import java.util.Map;
@@ -16,9 +16,9 @@ public class BeanFactoryTest {
         xmlBeanDefinitionReader.loadBeanDefinition("tinyioc.xml");
 
         // 2. 初始化beanFactory并注册bean
-        BeanFactory beanFactory = new AutoCapableBeanFactory();
-        for(Map.Entry<String, BeanDefinition> entry: xmlBeanDefinitionReader.getRegistry().entrySet()){
-            beanFactory.registerBeanDefinition(entry.getKey(),entry.getValue());
+        AutowireCapableBeanFactory beanFactory = new AutowireCapableBeanFactory();
+        for (Map.Entry<String, BeanDefinition> entry : xmlBeanDefinitionReader.getRegistry().entrySet()) {
+            beanFactory.registerBeanDefinition(entry.getKey(), entry.getValue());
         }
 
         // 3. 获取bean

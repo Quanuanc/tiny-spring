@@ -1,4 +1,4 @@
-package org.example.tinyioc;
+package org.example.tinyioc.beans;
 
 /**
  * bean的内容和元数据，保存在BeanFactory中，包装bean的实体

@@ -1,7 +1,7 @@
-package org.example.tinyioc.xml;
+package org.example.tinyioc.beans.xml;
 
-import org.example.tinyioc.BeanDefinition;
-import org.example.tinyioc.io.ResourceLoader;
+import org.example.tinyioc.beans.BeanDefinition;
+import org.example.tinyioc.beans.io.ResourceLoader;
 import org.junit.Assert;
 import org.junit.Test;
 

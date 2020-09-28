@@ -1,9 +1,9 @@
-package org.example.tinyioc.xml;
+package org.example.tinyioc.beans.xml;
 
-import org.example.tinyioc.AbstractBeanDefinitionReader;
-import org.example.tinyioc.BeanDefinition;
-import org.example.tinyioc.PropertyValue;
-import org.example.tinyioc.io.ResourceLoader;
+import org.example.tinyioc.beans.AbstractBeanDefinitionReader;
+import org.example.tinyioc.beans.BeanDefinition;
+import org.example.tinyioc.beans.PropertyValue;
+import org.example.tinyioc.beans.io.ResourceLoader;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
