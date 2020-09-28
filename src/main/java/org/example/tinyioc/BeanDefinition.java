@@ -11,7 +11,7 @@ public class BeanDefinition {
 
     private String beanClassName;
 
-    private PropertyValues propertyValues;
+    private PropertyValues propertyValues = new PropertyValues();
 
     public BeanDefinition() {
     }
@@ -24,7 +24,7 @@ public class BeanDefinition {
         return beanClass;
     }
 
-    public void setBeanCLass(Class beanClass) {
+    public void setBeanClass(Class beanClass) {
         this.beanClass = beanClass;
     }
 
