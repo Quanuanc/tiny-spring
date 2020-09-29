@@ -1,14 +1,16 @@
 package org.example.tinyioc.factory;
 
 import org.example.tinyioc.BeanDefinition;
+import org.example.tinyioc.BeanReference;
 import org.example.tinyioc.PropertyValue;
 
 import java.lang.reflect.Field;
 
-public class AutoCapableBeanFactory extends AbstractBeanFactory {
+public class AutowireBeanFactory extends AbstractBeanFactory {
     @Override
     protected Object doCreateBean(BeanDefinition beanDefinition) throws Exception {
         Object bean = createBeanInstance(beanDefinition);
+        beanDefinition.setBean(bean);
         applyPropertyValue(bean, beanDefinition);
         return bean;
     }
@@ -21,7 +23,12 @@ public class AutoCapableBeanFactory extends AbstractBeanFactory {
         for (PropertyValue propertyValue : beanDefinition.getPropertyValues().getPropertyValues()) {
             Field declareField = bean.getClass().getDeclaredField(propertyValue.getName());
             declareField.setAccessible(true);
-            declareField.set(bean, propertyValue.getValue());
+            Object value = propertyValue.getValue();
+            if (value instanceof BeanReference) {
+                BeanReference beanReference = (BeanReference) value;
+                value = getBean(beanReference.getName());
+            }
+            declareField.set(bean, value);
         }
     }
 

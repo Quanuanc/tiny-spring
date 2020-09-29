@@ -2,6 +2,7 @@ package org.example.tinyioc.xml;
 
 import org.example.tinyioc.AbstractBeanDefinitionReader;
 import org.example.tinyioc.BeanDefinition;
+import org.example.tinyioc.BeanReference;
 import org.example.tinyioc.PropertyValue;
 import org.example.tinyioc.io.ResourceLoader;
 import org.w3c.dom.Document;
@@ -41,7 +42,7 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
     }
 
     protected void parseBeanDefinitions(Element root) {
-        NodeList nl = root.getChildNodes();
+        NodeList nl = root.getChildNodes(); //拿到beans下的子节点
         for (int i = 0; i < nl.getLength(); i++) {
             Node node = nl.item(i);
             if (node instanceof Element) {
@@ -68,7 +69,17 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
                 Element propertyEle = (Element) node;
                 String name = propertyEle.getAttribute("name");
                 String value = propertyEle.getAttribute("value");
-                beanDefinition.getPropertyValues().addPropertyValue(new PropertyValue(name, value));
+                if (value != null && value.length() > 0) {
+                    beanDefinition.getPropertyValues().addPropertyValue(new PropertyValue(name, value));
+                } else {
+                    String ref = propertyEle.getAttribute("ref");
+                    if (ref == null || ref.length() == 0) {
+                        throw new IllegalArgumentException("Configuration problem: <property> element for property '"
+                                + name + "' must specify a ref or value");
+                    }
+                    BeanReference beanReference = new BeanReference(ref);
+                    beanDefinition.getPropertyValues().addPropertyValue(new PropertyValue(name, beanReference));
+                }
             }
         }
     }
