@@ -8,18 +8,17 @@ import org.example.tinyioc.beans.xml.XmlBeanDefinitionReader;
 
 import java.util.Map;
 
-public class ClassPathXmlApplicationContext implements ApplicationContext {
-    private AbstractBeanFactory beanFactory;
+public class ClassPathXmlApplicationContext extends AbstractApplicationContext {
     private String configLocation;
 
     public ClassPathXmlApplicationContext(String configLocation) {
-        this(configLocation,new AutowireCapableBeanFactory());
+        this(configLocation, new AutowireCapableBeanFactory());
     }
 
-    public ClassPathXmlApplicationContext(String configLocation,AbstractBeanFactory beanFactory) {
-        this.beanFactory = beanFactory;
+    public ClassPathXmlApplicationContext(String configLocation, AbstractBeanFactory beanFactory) {
+        super(beanFactory);
         this.configLocation = configLocation;
-        try{
+        try {
             refresh();
         } catch (Exception e) {
             e.printStackTrace();
