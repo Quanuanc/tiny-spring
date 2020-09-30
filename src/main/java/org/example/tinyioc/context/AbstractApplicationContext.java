@@ -12,7 +12,7 @@ public abstract class AbstractApplicationContext implements ApplicationContext {
     public abstract void refresh() throws Exception;
 
     @Override
-    public Object getBean(String name) {
+    public Object getBean(String name) throws Exception {
         return beanFactory.getBean(name);
     }
 }
