@@ -33,8 +33,4 @@ public class ClassPathXmlApplicationContext extends AbstractApplicationContext {
         }
     }
 
-    @Override
-    public Object getBean(String name) throws Exception {
-        return beanFactory.getBean(name);
-    }
 }

@@ -5,6 +5,9 @@ import org.example.tinyioc.beans.io.ResourceLoader;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * 从配置文件中读取BeanDefinition
+ */
 public abstract class AbstractBeanDefinitionReader implements BeanDefinitionReader {
 
     private Map<String, BeanDefinition> registry;
