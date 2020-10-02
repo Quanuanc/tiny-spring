@@ -9,9 +9,9 @@ import java.lang.reflect.Field;
 public class AutowireCapableBeanFactory extends AbstractBeanFactory {
     @Override
     protected Object doCreateBean(BeanDefinition beanDefinition) throws Exception {
-        Object bean = createBeanInstance(beanDefinition);
+        Object bean = createBeanInstance(beanDefinition); //生成一个新的实例
         beanDefinition.setBean(bean);
-        applyPropertyValue(bean, beanDefinition);
+        applyPropertyValue(bean, beanDefinition); //注入属性
         return bean;
     }
 

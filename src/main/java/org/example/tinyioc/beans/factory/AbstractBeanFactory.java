@@ -20,7 +20,7 @@ public abstract class AbstractBeanFactory implements BeanFactory {
         }
         Object bean = beanDefinition.getBean();
         if (bean == null) {
-            bean = doCreateBean(beanDefinition);
+            bean = doCreateBean(beanDefinition); //实例化Bean
         }
         return bean;
     }

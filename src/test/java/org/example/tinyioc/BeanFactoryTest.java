@@ -23,7 +23,7 @@ public class BeanFactoryTest {
         }
 
         // 3. 获取bean
-        HelloWorldService helloWorldService = (HelloWorldService) beanFactory.getBean("helloWorldService");
+        HelloWorldServiceImpl helloWorldService = (HelloWorldServiceImpl) beanFactory.getBean("helloWorldService");
         helloWorldService.helloWorld();
     }
 
@@ -39,7 +39,7 @@ public class BeanFactoryTest {
 
         beanFactory.preInstantiateSingletons();
 
-        HelloWorldService helloWorldService = (HelloWorldService) beanFactory.getBean("helloWorldService");
+        HelloWorldServiceImpl helloWorldService = (HelloWorldServiceImpl) beanFactory.getBean("helloWorldService");
         helloWorldService.helloWorld();
     }
 }
