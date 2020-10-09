@@ -7,20 +7,9 @@ import org.example.tinyioc.beans.PropertyValue;
 import java.lang.reflect.Field;
 
 public class AutowireCapableBeanFactory extends AbstractBeanFactory {
-    @Override
-    protected Object doCreateBean(BeanDefinition beanDefinition) throws Exception {
-        Object bean = createBeanInstance(beanDefinition); //生成一个新的实例
-        beanDefinition.setBean(bean);
-        applyPropertyValue(bean, beanDefinition); //注入属性
-        return bean;
-    }
 
-    protected Object createBeanInstance(BeanDefinition beanDefinition) throws Exception {
-        return beanDefinition.getBeanClass().newInstance();
-    }
-
-    protected void applyPropertyValue(Object bean, BeanDefinition beanDefinition) throws Exception {
-        for (PropertyValue propertyValue : beanDefinition.getPropertyValues().getPropertyValues()) {
+    protected void applyPropertyValues(Object bean, BeanDefinition mbd) throws Exception {
+        for (PropertyValue propertyValue : mbd.getPropertyValues().getPropertyValues()) {
             Field declaredField = bean.getClass().getDeclaredField(propertyValue.getName());
             declaredField.setAccessible(true);
             Object value = propertyValue.getValue();

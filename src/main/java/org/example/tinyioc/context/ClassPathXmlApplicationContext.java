@@ -11,21 +11,18 @@ import java.util.Map;
 public class ClassPathXmlApplicationContext extends AbstractApplicationContext {
     private String configLocation;
 
-    public ClassPathXmlApplicationContext(String configLocation) {
+	public ClassPathXmlApplicationContext(String configLocation) throws Exception {
         this(configLocation, new AutowireCapableBeanFactory());
     }
 
-    public ClassPathXmlApplicationContext(String configLocation, AbstractBeanFactory beanFactory) {
+	public ClassPathXmlApplicationContext(String configLocation, AbstractBeanFactory beanFactory) throws Exception {
         super(beanFactory);
         this.configLocation = configLocation;
-        try {
-            refresh();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        refresh();
     }
 
-    public void refresh() throws Exception {
+    @Override
+    protected void loadBeanDefinitions(AbstractBeanFactory beanFactory) throws Exception {
         XmlBeanDefinitionReader xmlBeanDefinitionReader = new XmlBeanDefinitionReader(new ResourceLoader());
         xmlBeanDefinitionReader.loadBeanDefinition(configLocation);
         for (Map.Entry<String, BeanDefinition> beanDefinitionEntry : xmlBeanDefinitionReader.getRegistry().entrySet()) {

@@ -1,6 +1,9 @@
 package org.example.tinyioc.context;
 
+import org.example.tinyioc.beans.BeanPostProcessor;
 import org.example.tinyioc.beans.factory.AbstractBeanFactory;
+
+import java.util.List;
 
 public abstract class AbstractApplicationContext implements ApplicationContext {
     protected AbstractBeanFactory beanFactory;
@@ -9,7 +12,24 @@ public abstract class AbstractApplicationContext implements ApplicationContext {
         this.beanFactory = beanFactory;
     }
 
-    public abstract void refresh() throws Exception;
+    public void refresh() throws Exception {
+        loadBeanDefinitions(beanFactory);
+        registerBeanPostProcessors(beanFactory);
+        onRefresh();
+    }
+
+    protected abstract void loadBeanDefinitions(AbstractBeanFactory beanFactory) throws Exception;
+
+    protected void registerBeanPostProcessors(AbstractBeanFactory beanFactory) throws Exception {
+        List beanPostProcessors = beanFactory.getBeansForType(BeanPostProcessor.class);
+        for (Object beanPostProcessor : beanPostProcessors) {
+            beanFactory.addBeanPostProcessor((BeanPostProcessor) beanPostProcessor);
+        }
+    }
+
+    protected void onRefresh() throws Exception {
+        beanFactory.preInstantiateSingletons();
+    }
 
     @Override
     public Object getBean(String name) throws Exception {
