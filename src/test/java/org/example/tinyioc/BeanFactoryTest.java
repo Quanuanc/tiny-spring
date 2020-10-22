@@ -14,7 +14,7 @@ public class BeanFactoryTest {
     public void testLazy() throws Exception {
         // 1. 读取配置
         XmlBeanDefinitionReader xmlBeanDefinitionReader = new XmlBeanDefinitionReader(new ResourceLoader());
-        xmlBeanDefinitionReader.loadBeanDefinition("tinyioc.xml");
+        xmlBeanDefinitionReader.loadBeanDefinitions("tinyioc.xml");
 
         // 2. 初始化bean并注册bean
         AbstractBeanFactory beanFactory = new AutowireCapableBeanFactory();
@@ -30,7 +30,7 @@ public class BeanFactoryTest {
     @Test
     public void testPreInstantiate() throws Exception {
         XmlBeanDefinitionReader xmlBeanDefinitionReader = new XmlBeanDefinitionReader(new ResourceLoader());
-        xmlBeanDefinitionReader.loadBeanDefinition("tinyioc.xml");
+        xmlBeanDefinitionReader.loadBeanDefinitions("tinyioc.xml");
 
         AbstractBeanFactory beanFactory = new AutowireCapableBeanFactory();
         for (Map.Entry<String, BeanDefinition> beanDefinitionEntry : xmlBeanDefinitionReader.getRegistry().entrySet()) {

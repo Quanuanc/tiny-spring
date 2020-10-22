@@ -1,14 +1,14 @@
 package org.example.tinyioc.beans.xml;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 import org.example.tinyioc.BeanReference;
 import org.example.tinyioc.beans.AbstractBeanDefinitionReader;
 import org.example.tinyioc.beans.BeanDefinition;
 import org.example.tinyioc.beans.PropertyValue;
 import org.example.tinyioc.beans.io.ResourceLoader;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -22,12 +22,12 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
     }
 
     @Override
-    public void loadBeanDefinition(String location) throws Exception {
+    public void loadBeanDefinitions(String location) throws Exception {
         InputStream inputStream = getResourceLoader().getResource(location).getInputStream();
-        doLoadDefinitions(inputStream);
+        doLoadBeanDefinitions(inputStream);
     }
 
-    protected void doLoadDefinitions(InputStream inputStream) throws Exception {
+    protected void doLoadBeanDefinitions(InputStream inputStream) throws Exception {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder docBuilder = factory.newDocumentBuilder();
         Document doc = docBuilder.parse(inputStream);
@@ -53,7 +53,7 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
     }
 
     protected void processBeanDefinition(Element ele) {
-        String name = ele.getAttribute("name");
+        String name = ele.getAttribute("id");
         String className = ele.getAttribute("class");
         BeanDefinition beanDefinition = new BeanDefinition();
         processProperty(ele, beanDefinition);

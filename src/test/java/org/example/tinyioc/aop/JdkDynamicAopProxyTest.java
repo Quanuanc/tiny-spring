@@ -19,12 +19,11 @@ public class JdkDynamicAopProxyTest {
         TargetSource targetSource = new TargetSource(helloWorldService, HelloWorldService.class);
         advisedSupport.setTargetSource(targetSource);
 
-        // 2. 设置拦截器
-//        TimerInterceptor timerInterceptor = new TimerInterceptor();
-        TestInterceptor testInterceptor = new TestInterceptor();
-        advisedSupport.setMethodInterceptor(testInterceptor);
+        // 2. 设置拦截器(Advice)
+        TimerInterceptor timerInterceptor = new TimerInterceptor();
+        advisedSupport.setMethodInterceptor(timerInterceptor);
 
-        // 3. 创建代理
+        // 3. 创建代理(Proxy)
         JdkDynamicAopProxy jdkDynamicAopProxy = new JdkDynamicAopProxy(advisedSupport);
         HelloWorldService helloWorldServiceProxy = (HelloWorldService) jdkDynamicAopProxy.getProxy();
 

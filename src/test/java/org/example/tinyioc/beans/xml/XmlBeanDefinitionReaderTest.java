@@ -11,7 +11,7 @@ public class XmlBeanDefinitionReaderTest {
     @Test
     public void test() throws Exception {
         XmlBeanDefinitionReader xmlBeanDefinitionReader = new XmlBeanDefinitionReader(new ResourceLoader());
-        xmlBeanDefinitionReader.loadBeanDefinition("tinyioc.xml");
+        xmlBeanDefinitionReader.loadBeanDefinitions("tinyioc.xml");
         Map<String, BeanDefinition> registry = xmlBeanDefinitionReader.getRegistry();
         Assert.assertTrue(registry.size() > 0);
     }

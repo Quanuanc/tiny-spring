@@ -4,6 +4,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 
     <bean id="outputService" class="org.example.tinyioc.OutputServiceImpl">
+        <!--        <property name="helloWorldService" ref="helloWorldService"></property>-->
     </bean>
 
     <bean id="helloWorldService" class="org.example.tinyioc.HelloWorldServiceImpl">
@@ -11,12 +12,7 @@
         <property name="outputService" ref="outputService"></property>
     </bean>
 
-    <bean id="timeInterceptor" class="org.example.tinyioc.aop.TimerInterceptor"></bean>
-
-    <bean id="autoProxyCreator" class="org.example.tinyioc.aop.AspectJAwareAdvisorAutoProxyCreator"></bean>
-
-    <bean id="aspectJAspect" class="org.example.tinyioc.aop.AspectJExpressionPointcutAdvisor">
-        <property name="advice" ref="timeInterceptor"></property>
-        <property name="expression" value="execution(* org.example.tinyioc.*.*(..))"></property>
+    <bean id="beanInitializeLogger" class="org.example.tinyioc.BeanInitializeLogger">
     </bean>
+
 </beans>
